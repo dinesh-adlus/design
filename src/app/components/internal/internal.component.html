@@ -1,0 +1,30 @@
+<p>internal works!</p>
+<span>Once data is passed from parent you can see here{{emailData}}along with {{PhoneNumber}}</span>
+<button type="button" (click)="popup()"></button>
+
+<ng-container>
+  <form [formGroup]="myForm">
+    <div class="base-form form-row">
+    <span> Enter FirstName </span>
+    <input type="text" formControlName="firstName" >
+    </div>
+    <div class=" base-form form-row">
+      <span>Enter LastName</span>
+    <input type="text" [value]= "" formControlName="lastName" >
+    </div>
+    <div class="base-form form-row">
+      <span>Enter gender</span>
+    <input type="text" formControlName="gender" >
+    </div>
+    <div class="form-row base-form" formArrayName="hobbies">
+      <button type="button" class="btn btn-secondary" (click)="addhobbies()">Add Hobbies</button>
+      <div *ngFor="let gh of myForm.get('hobbies')['controls']; index as i">
+        <input type="text" class="form-control"
+               [formControlName]="i">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="submitting()">Submit</button>
+  </form>
+<h4>Recieved Value is {{recievedValue}}</h4>
+  <button type="button" (click)="makeservice()">Service call</button>
+</ng-container>
